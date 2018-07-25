@@ -19,6 +19,7 @@ import (
 	"encoding/json"
 	"time"
 	"fmt"
+	"strings"
 )
 
 const (
@@ -82,5 +83,5 @@ func AccessLog(r *AccessLogRecord, format string) {
 		}
 	}
 
-	beeLogger.Debug(msg)
+	beeLogger.writeMsg(levelLoggerImpl, strings.TrimSpace(msg))
 }
