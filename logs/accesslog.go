@@ -42,6 +42,11 @@ type AccessLogRecord struct {
 	HTTPReferrer   string        `json:"http_referrer"`
 	HTTPUserAgent  string        `json:"http_user_agent"`
 	RemoteUser     string        `json:"remote_user"`
+	QtUserId       string                 `json:"qt_user_id"`
+	QtToken        string                 `json:"qt_access_token"`
+	QtDeviceId     string                 `json:"qt_device_id"`
+	ClientId       string                 `json:"client_id"`
+	RequestBody    map[string]interface{} `json:"request_body"`
 }
 
 func (r *AccessLogRecord) json() ([]byte, error) {

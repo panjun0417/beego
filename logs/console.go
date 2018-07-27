@@ -79,7 +79,8 @@ func (c *consoleWriter) WriteMsg(when time.Time, msg string, level int) error {
 	if level > c.Level {
 		return nil
 	}
-	if c.Colorful {
+	// if c.Colorful {
+	if false {
 		msg = colors[level](msg)
 	}
 	c.lg.println(when, msg)
