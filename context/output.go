@@ -37,6 +37,7 @@ type BeegoOutput struct {
 	Context    *Context
 	Status     int
 	EnableGzip bool
+	BodyBytes  int
 }
 
 // NewOutput returns new BeegoOutput.
@@ -49,6 +50,7 @@ func NewOutput() *BeegoOutput {
 func (output *BeegoOutput) Reset(ctx *Context) {
 	output.Context = ctx
 	output.Status = 0
+	output.BodyBytes = 0
 }
 
 // Header sets response header item string via given key.
@@ -79,6 +81,7 @@ func (output *BeegoOutput) Body(content []byte) error {
 	} else {
 		output.Context.ResponseWriter.Started = true
 	}
+	output.BodyBytes = len(content)
 	io.Copy(output.Context.ResponseWriter, buf)
 	return nil
 }

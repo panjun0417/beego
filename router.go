@@ -907,8 +907,8 @@ Admin:
 		methodColor := logs.ColorByMethod(iswin, r.Method)
 		resetColor := logs.ColorByMethod(iswin, "")
 		if BConfig.Log.AccessLogsFormat != "" {
-			var ob map[string]interface{}
-			json.Unmarshal(context.Input.RequestBody, &ob)
+			// var ob map[string]interface{}
+			// json.Unmarshal(context.Input.RequestBody, &ob)
 			record := &logs.AccessLogRecord{
 				RemoteAddr:     context.Input.IP(),
 				RequestTime:    startTime,
@@ -921,12 +921,12 @@ Admin:
 				HTTPReferrer:   r.Header.Get("Referer"),
 				HTTPUserAgent:  r.Header.Get("User-Agent"),
 				RemoteUser:     r.Header.Get("Remote-User"),
-				BodyBytesSent:  int64(len(context.Input.RequestBody)), //@todo this one is missing!
+				BodyBytesSent:  int64(context.Output.BodyBytes), //@todo this one is missing!
 				QtUserId:       r.Header.Get("QT-User-Id"),
 				QtToken:        r.Header.Get("QT-Access-Token"),
 				QtDeviceId:     r.Header.Get("QT-Device-Id"),
 				ClientId:       r.Header.Get("QT-Client-Id"),
-				RequestBody:    ob,
+				RequestBody:    string(context.Input.RequestBody),
 			}
 			logs.AccessLog(record, BConfig.Log.AccessLogsFormat)
 		} else {

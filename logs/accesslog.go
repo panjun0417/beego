@@ -46,7 +46,7 @@ type AccessLogRecord struct {
 	QtToken        string                 `json:"qt_access_token"`
 	QtDeviceId     string                 `json:"qt_device_id"`
 	ClientId       string                 `json:"client_id"`
-	RequestBody    map[string]interface{} `json:"request_body"`
+	RequestBody    string `json:"request_body"`
 }
 
 func (r *AccessLogRecord) json() ([]byte, error) {
