@@ -25,7 +25,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-	"encoding/json"
 
 	beecontext "github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/context/param"
